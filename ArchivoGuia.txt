@@ -1,0 +1,46 @@
+drop table if exists libros;
+
+create table libros(
+  codigo int unsigned default 0,
+  titulo varchar(40),
+  autor varchar(30),
+  editorial varchar(20),
+  precio decimal(5,2) unsigned,
+  primary key(codigo)
+ );
+
+insert into libros 
+   values (10,'Alicia en el pais de las maravillas','Lewis Carroll','Emece',15.4);
+insert into libros 
+   values (15,'Aprenda PHP','Mario Molina','Planeta',45.8);
+insert into libros values (23,'El aleph','Borges','Planeta',23.0);
+
+-- Intentemos ingresar un registro con valor de clave repetida (genera error)
+insert into libros values(23,'Java en 10 minutos','Mario Molina','Emece',25.5);
+
+-- Para reemplazar el registro con clave 23 por el nuevo empleamos "replace":
+replace into libros values(23,'Java en 10 minutos','Mario Molina','Emece',25.5);
+
+-- ingresamos un registro sin valor de código:
+replace into libros(titulo,autor,editorial,precio)
+  values('Cervantes y el quijote','Borges','Paidos',28);
+
+-- ingresamos un registro con un valor de código que no existe:
+replace into libros values(30,'Matematica estas ahi','Paenza','Paidos',12.8);
+
+-- Quitemos la clave primaria:
+alter table libros drop primary key;
+
+-- Ingresamos un registro con valor de código repetido usando "replace":
+replace into libros values(10,'Harry Potter ya la piedra filosofal','Hawking','Emece',48);
+
+select * from libros;
+
+
+
+
+
+
+
+
+
